@@ -1,0 +1,36 @@
+<div class="mb-3">
+</div>
+<p-table
+  [value]="eventData"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+>
+  <ng-template pTemplate="header">
+      <tr>
+          <th *ngIf="showBooking" style="width:25%">Booking Id</th>
+          <th style="width:25%">Event Name</th>
+          <th style="width:25%">Event Date</th>
+          <th *ngIf="showBooking" style="width:25%">Event Name</th>
+          <th *ngIf="showAllEvents" style="width:25%">Location</th>
+          <th *ngIf="showAllEvents" style="width:25%">Price</th>
+          <th *ngIf="showAllEvents" style="width:25%"></th>
+          
+      </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-event let-i="rowIndex">
+    <tr *ngFor="let eventDataItem of eventData">
+      <td *ngIf="showBooking">{{ eventDataItem.booking_id }}</td>
+      <td>{{ eventDataItem.event_name }}</td>
+      <td>{{ eventDataItem.event_date }}</td>
+      <td *ngIf="showBooking">{{ eventDataItem.ticket_qty }}</td>
+      <td *ngIf="showAllEvents">{{ eventDataItem.location }}</td>
+      <td *ngIf="showAllEvents">{{ eventDataItem.price }}</td>
+      <td>
+        <button type="button" class="btn btn-danger" (click)="viewbookEvent(eventDataItem.event_id)" *ngIf="showBookEvent() && showAllEvents">Book Event</button>
+        <button type="button" class="btn btn-danger" (click)="deleteEvent(eventDataItem.event_id)" *ngIf="showDelete() && showAllEvents">Delete</button>
+      </td>
+  </tr>
+  </ng-template>
+ 
+</p-table>

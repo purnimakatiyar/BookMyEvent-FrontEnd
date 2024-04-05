@@ -1,0 +1,57 @@
+<div class="form-container">
+    <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+        <h2>Event Form</h2>
+        <div class="form-group">
+           <label for="eventName">Event Name:</label>
+           <input type="text" formControlName="eventName" class="form-control" required #eventName>
+           <div *ngIf="showError('eventName')">
+             <small class="text-danger">This field is required.</small>
+           </div>
+        </div>
+       
+        <div class="form-group">
+           <label for="eventDate">Event Date:</label>
+           <input type="text" formControlName="eventDate" class="form-control" required #eventDate>
+           <div *ngIf="showError('eventDate')">
+             <small class="text-danger">This field is required.</small>
+           </div>
+        </div>
+  
+        <div class="form-group">
+           <label for="location">Location:</label>
+           <input type="text" formControlName="location" class="form-control" required #location>
+           <div *ngIf="showError('location')">
+             <small class="text-danger">This field is required.</small>
+           </div>
+        </div>
+  
+        <div class="form-group">
+           <label for="price">Price:</label>
+           <input type="text" formControlName="price" class="form-control" required #price>
+           <div *ngIf="showError('price')">
+             <small class="text-danger">This field is required.</small>
+           </div>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <input type="text" formControlName="category" class="form-control" required #category>
+            <div *ngIf="showError('category')">
+              <small class="text-danger">This field is required.</small>
+            </div>
+         </div>
+
+         
+        <div class="form-group">
+            <label for="ticketQuantity">Ticket Quantity:</label>
+            <input type="text" formControlName="ticketQuantity" class="form-control" required #ticketQuantity>
+            <div *ngIf="showError('ticketQuantity')">
+              <small class="text-danger">This field is required.</small>
+            </div>
+         </div>
+     
+        <button type="submit" class="btn btn-primary">Submit</button>
+     </form>
+  </div>
+  

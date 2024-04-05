@@ -1,0 +1,35 @@
+.event-detail {
+    display: flex;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .event-image {
+    flex: 0 0 auto;
+    margin-right: 20px;
+  }
+
+  .event-image img {
+    max-width: 100px; 
+    height: auto;
+  }
+
+  .event-info {
+    flex: 1 1 auto;
+  }
+
+  .event-info h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: #333;
+  }
+
+  .event-info p {
+    margin: 5px 0;
+    font-size: 1em;
+  }
+
+  .event-info strong {
+    font-weight: bold;
+  }

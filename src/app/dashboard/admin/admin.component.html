@@ -1,0 +1,25 @@
+<div class="card-container">
+    <div *ngFor="let index of [0, 1, 2]" class="card-item">
+      <p-card [style]="{ width: '360px' }">
+        <ng-template pTemplate="header">
+          <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+        </ng-template>
+        
+        <ng-template pTemplate="footer">
+          <div class="button-container">
+            <ng-container *ngIf="index === 0">
+              <button pButton label="My Profile" (click)="onProfile()">My Profile</button>
+            </ng-container>
+            <ng-container *ngIf="index === 1">
+              <button pButton label="Add Manager">Add Manager</button>
+            </ng-container>
+            <ng-container *ngIf="index === 2">
+              <button pButton label="View Managers" (click)="onviewManagers()">View Managers</button>
+            </ng-container>
+            
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+  

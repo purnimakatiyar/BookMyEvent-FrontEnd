@@ -1,0 +1,22 @@
+<div class="form-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h2>Login</h2>
+      <div class="form-group">
+         <label for="username">Username:</label>
+         <input type="text" formControlName="username" class="form-control" required #username>
+         <div *ngIf="showError('username')">
+           <small class="text-danger">This field is required.</small>
+         </div>
+      </div>
+     
+      <div class="form-group">
+         <label for="password">Password:</label>
+         <input type="password" formControlName="password" class="form-control" required #password>
+         <div *ngIf="showError('password')">
+           <small class="text-danger">This field is required.</small>
+         </div>
+      </div>
+     
+      <button type="submit" class="btn btn-primary">Submit</button>
+     </form>
+</div>

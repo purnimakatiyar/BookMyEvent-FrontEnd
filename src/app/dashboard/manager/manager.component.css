@@ -1,0 +1,39 @@
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 120px;
+    margin-top: 120px;
+    margin-bottom: 120px; 
+  }
+  
+  .card-item {
+    width: calc(33.33% - 10px);
+    margin-right: 5px;
+  }
+  
+  .card-item p-card {
+    height: 100%;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .button-container button {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button-container button:hover {
+    background-color: #0056b3;
+  }
+  

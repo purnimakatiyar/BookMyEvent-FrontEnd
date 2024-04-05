@@ -1,0 +1,19 @@
+
+.login-btn,
+.signup-btn,
+.logout-btn {
+  background-color: rgb(207, 4, 4);
+  color: white; 
+  padding: 8px 16px; 
+  margin-left: 8px;
+  border-radius: 7px;
+  width: 80px;
+}
+
+
+.w-full {
+  margin-right: 400px;
+  width: 500px;
+  height: 30px;
+  border-radius: 7px;
+}

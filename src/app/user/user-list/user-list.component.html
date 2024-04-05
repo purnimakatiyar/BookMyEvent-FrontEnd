@@ -1,0 +1,29 @@
+<div class="mb-3">
+</div>
+<p-table
+  [value]="userData"
+  [tableStyle]="{ 'min-width': '50rem' }"
+>
+  <ng-template pTemplate="header">
+      <tr>
+          <th style="width:25%">Event Name</th>
+          <th style="width:25%">Event Date</th>
+          <th style="width:25%">Location</th>
+          <th style="width:25%">Price</th>
+      </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-event let-i="rowIndex">
+    <tr *ngFor="let eventDataItem of eventData">
+      <td>{{ eventDataItem.event_name }}</td>
+      <td>{{ eventDataItem.event_date }}</td>
+      <td>{{ eventDataItem.location }}</td>
+      <td>{{ eventDataItem.price }}</td>
+      <td>
+        <button type="button" class="btn btn-danger" *ngIf="showDelete()">Delete</button>
+      </td>
+  </tr>
+  </ng-template>
+ 
+</p-table>
+<p>Manager List</p>
