@@ -25,16 +25,14 @@ export class FeaturedComponent {
       },
       (error) => {
         console.error('Error fetching events:', error);
-        // Handle error, e.g., show an error message to the user
+       
       })
 }
 
 
 showEventDetail(eventId: string) {
-  // Navigate to the event detail page with the event ID as a parameter
-  // this.eventService.getEvent(eventId);
+ 
   this.router.navigate(['/events/', eventId]);
-  
-  console.log(eventId);
+
 }
 }

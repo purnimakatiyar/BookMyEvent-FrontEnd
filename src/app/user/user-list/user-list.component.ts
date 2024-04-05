@@ -37,17 +37,5 @@ export class UserListComponent {
     }
   }
 
-  // deleteEvent(eventId: string){
-  //   console.log('in delte event');
-  //   this.userService.deleteEvent(eventId).subscribe(  (data) => {
-  //     this.eventData = data.events;
-  //     console.log(data);
-  //     console.log('Hello');
-  //   },
-    
-  //   (error) => {
-  //     console.error('Error deleting events:', error);
-  //   });
-  // }
 
 }

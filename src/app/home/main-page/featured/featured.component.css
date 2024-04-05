@@ -17,26 +17,26 @@
 
   .card-body {
     position: relative;
-    min-height: 100px; /* Adjust height as needed */
+    min-height: 100px; 
   }
   
   .center-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh; /* Adjust height as needed */
+    height: 10vh; 
   }
   
   
   
   @media (max-width: 992px) {
     .card {
-      width: calc(50% - 10px); /* Adjust for smaller screens */
+      width: calc(50% - 10px); 
     }
   }
   
   @media (max-width: 576px) {
     .card {
-      width: 100%; /* Make each card full width on extra small screens */
+      width: 100%; 
     }
   }

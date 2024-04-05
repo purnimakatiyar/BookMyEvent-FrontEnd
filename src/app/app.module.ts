@@ -25,15 +25,9 @@ import { UserModule } from './user/user.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // ReactiveFormsModule,
     MenubarModule,
-    // FormsModule,
     HttpClientModule,
     UserModule
-    // EventModule,
-    // DashboardModule,
-    // CardModule,
-    // TableModule
   ],
   providers: [
     {
