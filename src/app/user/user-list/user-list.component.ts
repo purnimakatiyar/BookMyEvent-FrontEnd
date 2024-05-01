@@ -21,8 +21,6 @@ export class UserListComponent {
     this.userService.getManagers().subscribe({
       next: (data) => {
         this.userData = data.managers;
-        console.log(data);
-        console.log('Hello');
       },
       error: (error) => {
         console.error('Error fetching managers:', error);
@@ -36,6 +34,5 @@ export class UserListComponent {
       return true;
     }
   }
-
 
 }

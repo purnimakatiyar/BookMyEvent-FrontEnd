@@ -8,24 +8,24 @@ import { Router } from "@angular/router";
     providedIn: 'root'
 })
 export class AuthService {
-    private apiUrl = 'https://bookmyevent-v3.onrender.com'; //  API endpoint for user authentication
+    private apiUrl = 'https://bookmyevent-v3.onrender.com'; 
     result: boolean = false;
     user = new BehaviorSubject<User>(null);
     currentUser: string = '';
 
     constructor(private http: HttpClient, private router: Router) {}
-   
+    
     login(username: string, password: string): Observable<any> {
-      console.log('login request made');
       return this.http.post<any>(`${this.apiUrl}/login`, { username, password }).pipe(
         tap((response)=>{
         this.setLogin(username, response);
       }));
     }
 
+    
     logout(){
       sessionStorage.clear();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
     }
 
     setLogin(username, response){
@@ -34,6 +34,31 @@ export class AuthService {
       sessionStorage.setItem('role', response.role);
       const user = new User(username, response.role, response.access_token);
       this.user.next(user);
+    }
+
+    isLoggedIn(): boolean {
+      const accessToken = sessionStorage.getItem('access_token');
+      return !!accessToken; 
+    }
+
+    isAdmin(): boolean {
+      const role = sessionStorage.getItem('role');
+      if(role == 'Admin'){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+
+    isManager(): boolean{
+      const role = sessionStorage.getItem('role');
+      if(role == 'Manager'){
+        return true;
+      }
+      else{
+        return false;
+      }
     }
   }
   

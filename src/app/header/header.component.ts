@@ -33,7 +33,6 @@ export class HeaderComponent {
   if (this.authService.result) {
     this.showLogin = false;
     this.showSignup = false;
-    
       return true;
   }
   else{

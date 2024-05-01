@@ -11,9 +11,15 @@
 }
 
 
-.w-full {
-  margin-right: 400px;
-  width: 500px;
-  height: 30px;
-  border-radius: 7px;
-}
+.home-link {
+  color: rgb(15, 6, 6); /* Text color */
+  text-decoration: none; /* Remove underline */
+  margin-right: 20px; /* Space between the "Home" link and the next element */
+  padding: 10px; /* Padding around the link */
+  border-radius: 5px; /* Rounded corners */
+position: relative;
+ }
+ 
+ .home-link:hover {
+  color:rgb(207, 4, 4); /* Darker background on hover */
+ }

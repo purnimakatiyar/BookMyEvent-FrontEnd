@@ -11,7 +11,6 @@ export class UserService {
     constructor(private http: HttpClient) {}
    
     getManagers(): Observable<any> {
-      console.log('get managers request made');
       return this.http.get<any>(`${this.apiUrl}/managers`);
     }
   }

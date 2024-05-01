@@ -13,4 +13,9 @@ export class ProfileService {
     getProfile(): Observable<any> {
       return this.http.get<any>(`${this.apiUrl}/profile`); 
     }
+
+    updateProfile(profileDetails): Observable<any> {
+      return this.http.put<any>(`${this.apiUrl}/profile`, profileDetails); 
+    }
+
   }

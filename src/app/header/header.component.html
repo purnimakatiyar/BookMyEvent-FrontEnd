@@ -4,7 +4,8 @@
   </ng-template>
   
   <ng-template pTemplate="end">
-    <!-- <input type="text" pInputText placeholder="Search" class="w-full" /> -->
+
+    <a class="home-link" routerLink="/">Home</a>
     <button *ngIf="showLogin" class="login-btn" routerLink="/login">Login</button>
     <button *ngIf="showSignup" class="signup-btn" routerLink="/signup">Signup</button>
     <button *ngIf="loggedIn()" class="logout-btn" (click)="logout()">Logout</button>

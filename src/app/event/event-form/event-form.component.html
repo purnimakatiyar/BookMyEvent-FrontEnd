@@ -1,6 +1,7 @@
+<p-dialog header="Event Form" (onHide)="close()" [(visible)]="visible" [modal]="true" [style]="{ width: '30vw' }" [draggable]="false" [resizable]="false">
 <div class="form-container">
-    <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
-        <h2>Event Form</h2>
+    <form [formGroup]="eventForm" (ngSubmit)="onClick()">
+     
         <div class="form-group">
            <label for="eventName">Event Name:</label>
            <input type="text" formControlName="eventName" class="form-control" required #eventName>
@@ -11,7 +12,7 @@
        
         <div class="form-group">
            <label for="eventDate">Event Date:</label>
-           <input type="text" formControlName="eventDate" class="form-control" required #eventDate>
+           <input type="date" formControlName="eventDate" class="form-control" required #eventDate>
            <div *ngIf="showError('eventDate')">
              <small class="text-danger">This field is required.</small>
            </div>
@@ -54,4 +55,4 @@
         <button type="submit" class="btn btn-primary">Submit</button>
      </form>
   </div>
-  
+</p-dialog>

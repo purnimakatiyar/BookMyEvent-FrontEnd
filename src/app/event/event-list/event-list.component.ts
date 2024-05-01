@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../services/event.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../auth/services/auth.service';
 
 
 @Component({
@@ -12,56 +14,80 @@ export class EventListComponent implements OnInit{
   eventData: Object[]=[];
   showBooking: boolean = false;
   showAllEvents: boolean = false;
-  role: string = sessionStorage.getItem('role');
-  
- 
-  constructor(private route: ActivatedRoute, private eventService: EventService) {}
+  public loading = false;
+
+  constructor(private route: ActivatedRoute, private eventService: EventService, 
+    private authService: AuthService, private toastr: ToastrService, private router: Router) {}
+
 
   ngOnInit(): void {
     this.route.url.subscribe(urlSegments => {
-      console.log(urlSegments[0].path);
-      if (urlSegments.length && urlSegments[0].path === 'all-events') {
-        this.fetchEvents();
-      } else if (urlSegments.length && urlSegments[0].path === 'bookevents') {
+
+      if (urlSegments.length && urlSegments[0].path === 'bookevents') {
         this.viewbookEvents();
+      }
+      else{
+        this.fetchEvents();
       }
     });
   }
 
+
   fetchEvents(): void {
+    if(this.authService.currentUser == 'Customer'){
+      this.loading = true;
     this.eventService.getEvents().subscribe({
       next: (data) => {
+        this.loading = false;
         this.eventData = data.events;
-        console.log(data);
-        console.log('Hello');
         this.showAllEvents = true;
       },
       error: (error) => {
-        alert('Something went wrong');
+        this.toastr.error('Some Error occurred during fetching events.');
       }}
-    );
+    );}
+
+    else if(this.authService.currentUser == 'Manager'){
+      this.loading = true;
+      this.eventService.getUserEvents().subscribe({
+        next: (data) => {
+          this.loading = false;
+          this.eventData = data.events;
+          this.showAllEvents = true;
+        },
+        error: (error) => {
+          this.toastr.error('Some Error occurred during fetching events.');
+        }}
+      );
+    }
   }
 
   showDelete(){
-    if(this.role=='Manager'){
+    if(this.authService.currentUser=='Manager'){
       return true;
     }
   }
+
   showBookEvent(){
-    if(this.role=='Customer'){
+    if(this.authService.currentUser =='Customer'){
       return true;
     }
   }
 
 
-  bookEvent(eventId: string){
-    this.eventService.bookEvent(eventId).subscribe(  (data) => {
-      this.eventData = data.events;
+  bookEvent(eventId: string, ticket_qty){
+
+    const bookingDetails = {ticket_qty: ticket_qty};
+    
+    this.eventService.bookEvent(eventId, bookingDetails).subscribe(
+      {next: (data) => {
+        this.eventData = data.events;
+        this.toastr.success('Successfully Booked Event');
     },
 
-    (error) => {
-      console.error('Error deleting events:', error);
-    });
+    error: (error) => {
+      this.toastr.error('Some Error occurred during booking event.');
+    }});
   }
 
   viewbookEvents():void{
@@ -71,20 +97,27 @@ export class EventListComponent implements OnInit{
         this.showBooking = true;
       },
       error: (error) => {
-        console.error('Error fetching events:', error);
-       
+        this.toastr.error('Some Error occurred during fetching event.');
       }}
     );
   }
 
-  deleteEvent(eventId: string){
-   
-    this.eventService.deleteEvent(eventId).subscribe(  (data) => {
-      this.eventData = data.events;
-    },
+  updateEvent(eventId: string){
+    this.router.navigate(['dashboard/manager/update-event'], { state: {eventId: eventId }});
+  }
 
-    (error) => {
-      console.error('Error deleting events:', error);
-    });
+
+  deleteEvent(eventId: string){
+    this.loading = true;
+    
+    this.eventService.deleteEvent(eventId).subscribe( 
+      {next: (data) => {
+        this.loading = false;
+        this.eventData = data.events;
+        this.toastr.success('Successfully Removed Event');
+    },
+    error: (error) => {
+      this.toastr.error('Some Error occurred while removing event.');
+    }});
   }
 }

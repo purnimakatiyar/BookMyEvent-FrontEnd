@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
+    height: 88vh; 
     width: 100%; 
   }
   
@@ -54,3 +54,20 @@
     background-color: #0056b3;
   }
   
+  
+.signup-link {
+  color: #007bff;
+  text-decoration: none;
+ }
+ 
+ .signup-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+ }
+
+ @media (max-width: 600px) {
+  form {
+      width: 90%; 
+      padding: 15px; 
+  }
+}

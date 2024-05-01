@@ -1,6 +1,21 @@
 <div class="center-container">
-    <h2>Featured</h2>
-</div>  
+    <h2>Featured </h2>
+  </div>  
+    <div class="center-container">
+    <ng-template #customLoadingTemplate>
+      <div class="custom-class">
+          <h3>Please wait...</h3>
+      </div>
+  </ng-template>
+
+  <ngx-loading
+      [show]="loading"
+      [config]="{ backdropBorderRadius: '3px' }"
+      [template]="customLoadingTemplate"
+  ></ngx-loading>
+    </div>
+
+
     <div class="card-deck">
       <div class="card" *ngFor="let event of eventData">
         <img class="card-img-top" src="./assets/sample4.jpg" alt="Card image cap" (click)="showEventDetail(event.event_id)">
@@ -8,7 +23,7 @@
           <h5 class="card-title">{{ event.event_name }}</h5>
           <p class="card-text">Location: {{ event.location }}</p>
           <p class="card-text">Date: {{ event.event_date }}</p>
-          <button class="btn btn-primary btn-book">Book</button> <!-- Added button for booking -->
+          <button class="btn btn-primary btn-book" (click)="isBook()">Book</button> 
         </div>
       </div>
     </div>

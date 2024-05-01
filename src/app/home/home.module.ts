@@ -6,6 +6,7 @@ import { FeaturedComponent } from './main-page/featured/featured.component';
 import { AboutComponent } from './main-page/about/about.component';
 import { EventModule } from '../event/event.module';
 import { EventItemComponent } from '../event/event-list/event-item/event-item.component';
+import { NgxLoadingModule } from 'ngx-loading';
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    EventModule
+    EventModule,
+    NgxLoadingModule.forRoot({}),
   ]
 })
 export class HomeModule { }

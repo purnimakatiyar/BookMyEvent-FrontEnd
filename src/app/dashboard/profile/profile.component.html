@@ -13,6 +13,15 @@
         <span class="label">Phone:</span>
         <span class="value">{{ profileData.phone }}</span>
       </div>
+      <ngx-loading
+      [show]="loading"
+      [config]="{ backdropBorderRadius: '3px' }"
+    ></ngx-loading>
     </div>
+    <button type="button" class="btn btn-danger" (click)="updateProfile()">Update Profile</button>
   </div>
+
+  <div *ngIf="updateClicked">
+    <app-update-profile [profile]="currentProfile"></app-update-profile>
+</div>
   

@@ -5,29 +5,33 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { CardModule } from 'primeng/card';
-
+import { NgxLoadingModule } from "ngx-loading";
 import { MenubarModule } from 'primeng/menubar';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { EventModule } from './event/event.module';
-import { DashboardModule } from './dashboard/dashboard.module';
-import { TableModule } from 'primeng/table';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UserModule } from './user/user.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DemoComponent } from './demo/demo.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    DemoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MenubarModule,
     HttpClientModule,
-    UserModule
+    UserModule,
+    ToastrModule.forRoot(),
+    NgxLoadingModule.forRoot({}),
+    BrowserAnimationsModule
+
   ],
   providers: [
     {

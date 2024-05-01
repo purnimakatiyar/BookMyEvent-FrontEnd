@@ -1,36 +1,55 @@
+<h1>Events</h1>
 <div class="mb-3">
 </div>
 <p-table
   [value]="eventData"
+  [paginator]="true"
+  [rows]="5"
   [showCurrentPageReport]="true"
   [tableStyle]="{ 'min-width': '50rem' }"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [rowsPerPageOptions]="[5, 10, 20]"
 >
+<ngx-loading
+[show]="loading"
+[config]="{ backdropBorderRadius: '3px' }"
+></ngx-loading>
+
   <ng-template pTemplate="header">
       <tr>
+          <th style="width:12.5%">SNo.</th>
           <th *ngIf="showBooking" style="width:25%">Booking Id</th>
           <th style="width:25%">Event Name</th>
           <th style="width:25%">Event Date</th>
-          <th *ngIf="showBooking" style="width:25%">Event Name</th>
+          <th *ngIf="showBooking" style="width:25%">Ticket Quantity</th>
           <th *ngIf="showAllEvents" style="width:25%">Location</th>
           <th *ngIf="showAllEvents" style="width:25%">Price</th>
+          <th *ngIf="showAllEvents" style="width:25%">Tickets Available</th>
           <th *ngIf="showAllEvents" style="width:25%"></th>
           
       </tr>
   </ng-template>
 
-  <ng-template pTemplate="body" let-event let-i="rowIndex">
-    <tr *ngFor="let eventDataItem of eventData">
+  <ng-template pTemplate="body" let-eventDataItem let-i="rowIndex">
+    <tr>
+      <td>{{ i + 1 }}</td>
       <td *ngIf="showBooking">{{ eventDataItem.booking_id }}</td>
       <td>{{ eventDataItem.event_name }}</td>
       <td>{{ eventDataItem.event_date }}</td>
       <td *ngIf="showBooking">{{ eventDataItem.ticket_qty }}</td>
       <td *ngIf="showAllEvents">{{ eventDataItem.location }}</td>
       <td *ngIf="showAllEvents">{{ eventDataItem.price }}</td>
-      <td>
-        <button type="button" class="btn btn-danger" (click)="viewbookEvent(eventDataItem.event_id)" *ngIf="showBookEvent() && showAllEvents">Book Event</button>
-        <button type="button" class="btn btn-danger" (click)="deleteEvent(eventDataItem.event_id)" *ngIf="showDelete() && showAllEvents">Delete</button>
-      </td>
-  </tr>
+      <td *ngIf="showAllEvents">{{ eventDataItem.ticket_qty }}</td>
+        <div *ngIf="showBookEvent() && showAllEvents">
+         <td> <input type="number" min="1" step="1" [(ngModel)]="ticketQuantity"></td>
+         <td><button type="button" class="btn btn-danger ml-2" (click)="bookEvent(eventDataItem.event_id, ticketQuantity)">Book Event</button></td> 
+        </div>
+      <td><button type="button" class="btn btn-danger" (click)="updateEvent(eventDataItem.event_id)" *ngIf="showDelete() && showAllEvents">Update</button></td>
+       <td> <button type="button" class="btn btn-danger" (click)="deleteEvent(eventDataItem.event_id)" *ngIf="showDelete() && showAllEvents">Delete</button></td>
+      
+    </tr>
+    
   </ng-template>
+  
  
 </p-table>

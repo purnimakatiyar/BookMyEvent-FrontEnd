@@ -12,7 +12,6 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('auth Interceptor called');
     return this.loginService.user.pipe(
       take(1),
       exhaustMap((user) => {
@@ -23,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
           'Authorization',
           `Bearer ${user.token}`
         );
-        console.log(user.token);
+  
         const modifiedReq = request.clone({ headers });
         return next.handle(modifiedReq);
       })

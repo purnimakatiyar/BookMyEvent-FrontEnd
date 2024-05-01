@@ -1,0 +1,42 @@
+
+.about-us {
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center; 
+}
+
+
+.about-us h2 {
+    color: rgb(207, 4, 4);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+
+.about-us h3 {
+    color:rgb(207, 4, 4);
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.about-us p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+
+.about-us p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+
+.about-us p a:hover {
+    text-decoration: underline;
+}
